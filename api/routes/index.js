@@ -11,12 +11,16 @@ const authorize = require('../middlewares/authorize');
 
 // Rutas
 router.post('/auth/register', AuthController.register);
+
 router.post('/views/tareas', AuthController.nuevaTarea);
+
 router.post('/auth/login', AuthController.login);
 router.get('/protected', authorize([Role.User, Role.Admin]), (req, res) => {
     res.send("Ruta protegida");
 });
 router.get('/views/tareas/:id', authorize([Role.Admin]), UserController.getById);
+
+router.get('/views/ListaTareas', AuthController.getAllTask); 
 
 router.get('/users', authorize([Role.Admin]), UserController.getAll);
 router.get('/users/:id', authorize([Role.Admin]), UserController.getById);

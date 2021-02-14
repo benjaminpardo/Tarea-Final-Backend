@@ -86,14 +86,22 @@ async function nuevaTarea(req, res){
     })
 }
 
-
-
-async function getTareaById(req, res) {
-    const Tarea = await Tarea.findById(req.params.id_usuario);
-    if (!Tarea) return res.status(404).send({ error: 'Tarea no encontrada' })
-    return res.send(basicDetails(Tarea));
+async function getTaskById(req, res) {
+    const tarea = await Tarea.findById(req.params.id);
+    if (!tarea) return res.status(404).send({ error: 'Usuario no encontrado' })
+    return res.send(basicDetails(user));
 }
 
+ async function getAllTask(req, res) {
+     const tareas = await Tarea.find();
+     return res.send(tareas.map(tarea => basicDetailsTarea(tarea)));
+ }
+
+
+function basicDetailsTarea(tarea) {
+    const { id, id_usuario, titulo, descripcion } = tarea;
+    return { id, id_usuario, titulo, descripcion };
+}
 
 
 
@@ -141,5 +149,6 @@ async function login(req, res) {
 module.exports = {
     register,
     login,
-    nuevaTarea
+    nuevaTarea,
+    getAllTask
 };

@@ -7,7 +7,7 @@ const Tarea = new Schema({
     //     ref: 'User', 
     //     required: true
     // },
-     id_usuario: { type: String, required: true},
+    id_usuario: { type: String, required: true},
     titulo: { type: String, required: true },
     descripcion: { type: String, required: true },
     

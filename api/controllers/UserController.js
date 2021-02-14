@@ -13,6 +13,10 @@ async function getById(req, res) {
     return res.send(basicDetails(user));
 }
 
+
+
+
+
 // Elimina un usuario
 async function deleteUser(req, res) {
     User.findByIdAndDelete(req.params.id)
